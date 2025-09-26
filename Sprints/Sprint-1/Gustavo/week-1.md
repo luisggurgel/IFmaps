@@ -12,6 +12,7 @@
 
 <ul>
   <li> Mapear O BC</li>
+  <li> Aprender a modelar no Blender</li>
 </ul>
 
 <h2>O que impediu</h2>
