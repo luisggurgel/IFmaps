@@ -11,6 +11,9 @@
 
 <ul>
   <li> Aprender a modelar no Blender</li>
+  <li> Estudar Pipeline</li>
+  <li> Mapear os APs dos blocos</li>
+  <li> Mapear o Bloco de artes</li>
 </ul>
 
 <h2>O que impediu</h2>
