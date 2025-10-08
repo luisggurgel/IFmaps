@@ -11,7 +11,7 @@
 <h2>O que eu fiz:</h2>
 
 <ul>
-    <li>Pesquisar e estudar dart e flutter. 2h</li>
+    <li>Pesquisar e estudar dart e flutter. 14h</li>
     <li>Setar ambiente de desenvolvimento. 3h</li>
     <li>Organizar discord do projeto. 1h</li>
 </ul>
