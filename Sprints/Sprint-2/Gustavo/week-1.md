@@ -1,1 +1,23 @@
-<h1>GUSTAVO</h1>
+<h1> Gustavo - Semana 4</h1>
+
+<h2>O que foi feito</h2>
+<ul>
+  <li>Mapeamento do Bloco de Artes</li>
+  <li>Estudar sobre Widgets do Flutter</li>
+</ul>
+
+<h2>O que falta fazer</h2>
+    
+<ul>
+  <li> Estudar Pipeline</li>
+  <li> Exportar o app de Swift para Flutter </li>
+  <li> Mapear os APs dos blocos</li>
+  <li> Estudar Banco de Dados</li>
+</ul>
+
+<h2>O que impediu</h2>
+  <ul>
+    <li>Lista de localização dos APs não foi adquirida ainda (12h)</li>
+    <li>Memória</li>
+  </ul>
+
