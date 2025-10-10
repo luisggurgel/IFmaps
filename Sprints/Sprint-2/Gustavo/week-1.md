@@ -17,7 +17,6 @@
 
 <h2>O que impediu</h2>
   <ul>
-    <li>Lista de localização dos APs não foi adquirida ainda (12h)</li>
-    <li>Memória</li>
+   
   </ul>
 
