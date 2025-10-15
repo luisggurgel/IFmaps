@@ -4,6 +4,8 @@
 <ul>
   <li>Mapeamento do Bloco de Artes</li>
   <li>Estudar sobre Widgets do Flutter</li>
+  <li>Mapear os APs da BDI (externo das salas)</li>
+  <li>Mapear os APs do BC (Térreo)</li>
 </ul>
 
 <h2>O que falta fazer</h2>
@@ -17,6 +19,6 @@
 
 <h2>O que impediu</h2>
   <ul>
-   
+   -nulo-
   </ul>
 
