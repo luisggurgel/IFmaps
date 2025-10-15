@@ -16,6 +16,8 @@
     <li>Testes no ambiente de desenvolvimento. 40m - 09/10/25</li>
     <li>Organização geral do projeto. 30m - 10/10/25 </li>
     <li>Comecei a fazer o diagrama de classe. 2h - 10/10/25</li>
+    <li>Progressão no diagrama de classe. 1h20 - 14/10/25</li>
+    <li>Estudo do git. 1h - 14/10/25</li>
 </ul>
 
 <h2>Dificuldades</h2>
