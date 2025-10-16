@@ -12,7 +12,7 @@
     
 <ul>
   <li> Estudar Pipeline</li>
-  <li> Exportar o app de Swift para Flutter </li>
+  <li> Estudar Widgets do Flutter </li>
   <li> Mapear os APs dos blocos</li>
   <li> Estudar Banco de Dados</li>
 </ul>
