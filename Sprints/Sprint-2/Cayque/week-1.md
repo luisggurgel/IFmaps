@@ -6,6 +6,7 @@
     <li>Fazer o diagrama de classe.</li>
     <li>Realizar testes no ambiente de desenvolvimento: Identificar se o dispositivo está ou não no IF</li>
     <li>Estudar docker.</li>
+    <li>Estudar git.</li>
     <li>Escolher banco de dados.</li>
     <li>Organização geral do projeto.</li>
 </ul>
@@ -18,6 +19,7 @@
     <li>Comecei a fazer o diagrama de classe. 2h - 10/10/25</li>
     <li>Progressão no diagrama de classe. 1h20 - 14/10/25</li>
     <li>Estudo do git. 1h - 14/10/25</li>
+    <li>Escolha do Banco de Dados. 1h - 15/10/25</li>
 </ul>
 
 <h2>Dificuldades</h2>
