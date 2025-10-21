@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 void main() {
   runApp(const MyApp());
@@ -46,6 +47,7 @@ Future<Position> _determinePosition() async {
   return await Geolocator.getCurrentPosition();
 }
 
+
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
@@ -78,6 +80,33 @@ class _MyHomePageState extends State<MyHomePage> {
   String locationMessage = "";
   List<double> minMaxLatLong = [];
 
+  void _liveLocation(){
+  LocationSettings locationSettings = const LocationSettings(
+    accuracy: LocationAccuracy.best,
+    distanceFilter: 1, //Taxa de atualização, atualiza a cada 1m
+  );
+
+  Geolocator.getPositionStream().listen(
+    (Position position) {
+      latitude = position.latitude;
+      longitude = position.longitude;
+
+      setState(() {
+        locationMessage = "Latitude: $latitude Longitude $longitude";
+      });
+    }
+  );
+  }
+
+  Future<void> _openMap(double? latitude, double? longitude) async {
+    final uri = Uri.parse('https://www.google.com/maps/search/?api=1&query=$latitude,$longitude');
+
+    // tenta abrir diretamente no browser / app externo
+    if (!await launchUrl(uri, mode: LaunchMode.externalApplication)) {
+      throw Exception('Não conseguiu abrir a url: $uri');
+    }
+  }
+
   @override 
   Widget build(BuildContext context) => Scaffold(
     appBar: AppBar(
@@ -98,10 +127,17 @@ class _MyHomePageState extends State<MyHomePage> {
                 setState(() {
                   locationMessage = "Latitude: $latitude Longitude $longitude";
                 });
+                _liveLocation();
               });
             }, 
             child: Text("Pegue a sua localização atual"),
-            )
+          ),
+          ElevatedButton(
+            onPressed: () {
+              _openMap(latitude, longitude);
+            },
+            child: Text("Ver no google maps"),
+          )
         ],
       ) 
       ,
