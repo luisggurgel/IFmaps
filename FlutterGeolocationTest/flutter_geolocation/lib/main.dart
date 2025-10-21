@@ -1,127 +1,98 @@
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
 
-void main() => runApp(const MyApp());
+void main() {
+  runApp(const MyApp());
+}
+
+/// Determine the current position of the device.
+///
+/// When the location services are not enabled or permissions
+/// are denied the `Future` will return an error.
+Future<Position> _determinePosition() async {
+  bool serviceEnabled;
+  LocationPermission permission;
+
+  // Test if location services are enabled.
+  serviceEnabled = await Geolocator.isLocationServiceEnabled();
+  if (!serviceEnabled) {
+    // Location services are not enabled don't continue
+    // accessing the position and request users of the 
+    // App to enable the location services.
+    return Future.error('Location services are disabled.');
+  }
+//a
+  permission = await Geolocator.checkPermission();
+  if (permission == LocationPermission.denied) {
+    permission = await Geolocator.requestPermission();
+    if (permission == LocationPermission.denied) {
+      // Permissions are denied, next time you could try
+      // requesting permissions again (this is also where
+      // Android's shouldShowRequestPermissionRationale 
+      // returned true. According to Android guidelines
+      // your App should show an explanatory UI now.
+      return Future.error('Location permissions are denied');
+    }
+  }
+  
+  if (permission == LocationPermission.deniedForever) {
+    // Permissions are denied forever, handle appropriately. 
+    return Future.error(
+      'Location permissions are permanently denied, we cannot request permissions.');
+  } 
+
+  // When we reach here, permissions are granted and we can
+  // continue accessing the position of the device.
+  return await Geolocator.getCurrentPosition();
+}
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
+
+  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: LineBetweenPointsDemo(),
-    );
-  }
-}
-
-class LineBetweenPointsDemo extends StatefulWidget {
-  const LineBetweenPointsDemo({super.key});
-  @override
-  State<LineBetweenPointsDemo> createState() => _LineBetweenPointsDemoState();
-}
-
-class _LineBetweenPointsDemoState extends State<LineBetweenPointsDemo> {
-  Offset? p1;
-  Offset? p2;
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text('Linha dinâmica entre dois pontos')),
-      body: LayoutBuilder(builder: (context, constraints) {
-        // inicializa posições relativas na primeira build
-        p1 ??= Offset(constraints.maxWidth * 0.25, constraints.maxHeight * 0.5);
-        p2 ??= Offset(constraints.maxWidth * 0.75, constraints.maxHeight * 0.5);
-
-        return Stack(
-          children: [
-            // área de desenho (ocupa tudo)
-            SizedBox.expand(
-              child: CustomPaint(
-                painter: LinePainter(p1!, p2!),
-              ),
-            ),
-
-            // Ponto 1 - arrastável
-            Positioned(
-              left: p1!.dx - 16, // centraliza o círculo
-              top: p1!.dy - 16,
-              child: GestureDetector(
-                onPanUpdate: (details) {
-                  setState(() {
-                    final nx = (p1!.dx + details.delta.dx)
-                        .clamp(0.0, constraints.maxWidth)
-                        .toDouble();
-                    final ny = (p1!.dy + details.delta.dy)
-                        .clamp(0.0, constraints.maxHeight)
-                        .toDouble();
-                    p1 = Offset(nx, ny);
-                  });
-                },
-                child: _buildHandle(Colors.red),
-              ),
-            ),
-
-            // Ponto 2 - arrastável
-            Positioned(
-              left: p2!.dx - 16,
-              top: p2!.dy - 16,
-              child: GestureDetector(
-                onPanUpdate: (details) {
-                  setState(() {
-                    final nx = (p2!.dx + details.delta.dx)
-                        .clamp(0.0, constraints.maxWidth)
-                        .toDouble();
-                    final ny = (p2!.dy + details.delta.dy)
-                        .clamp(0.0, constraints.maxHeight)
-                        .toDouble();
-                    p2 = Offset(nx, ny);
-                  });
-                },
-                child: _buildHandle(Colors.green),
-              ),
-            ),
-          ],
-        );
-      }),
-    );
-  }
-
-  // widget circular para representar o "nó"
-  Widget _buildHandle(Color color) {
-    return Container(
-      width: 32,
-      height: 32,
-      decoration: BoxDecoration(
-        color: color,
-        shape: BoxShape.circle,
-        boxShadow: const [BoxShadow(blurRadius: 4, offset: Offset(0,2), color: Colors.black26)],
+    return MaterialApp(
+      title: 'Flutter Demo',
+      theme: ThemeData(
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
+      home: const MyHomePage(title: 'Verificando se está no IF ou não.'),
     );
   }
 }
 
-class LinePainter extends CustomPainter {
-  final Offset p1;
-  final Offset p2;
-  LinePainter(this.p1, this.p2);
+class MyHomePage extends StatefulWidget {
+  const MyHomePage({super.key, required this.title});
+
+  final String title;
 
   @override
-  void paint(Canvas canvas, Size size) {
-    final paint = Paint()
-      ..color = Colors.blue
-      ..strokeWidth = 4
-      ..strokeCap = StrokeCap.round;
-
-    // linha direta
-    canvas.drawLine(p1, p2, paint);
-
-    // exemplo: desenhar um ponto central (opcional)
-    // final center = (p1 + p2) / 2;
-    // canvas.drawCircle(center, 6, Paint()..color = Colors.orange);
-  }
-
-  @override
-  bool shouldRepaint(covariant LinePainter old) {
-    // repaint quando os pontos mudarem
-    return old.p1 != p1 || old.p2 != p2;
-  }
+  State<MyHomePage> createState() => _MyHomePageState();
 }
+
+class _MyHomePageState extends State<MyHomePage> {
+  final String _currentLocation = "Localização atual";
+
+  @override 
+  Widget build(BuildContext context) => Scaffold(
+    appBar: AppBar(
+      title: Text(widget.title),
+      centerTitle: true,
+    ),
+    body: Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          Text(_currentLocation),
+          ElevatedButton(
+            onPressed: _determinePosition, 
+            child: Text("Pegue a sua localização atual"),
+            )
+        ],
+      ) 
+      ,
+    ),
+  );
+}
+
