@@ -78,7 +78,23 @@ class _MyHomePageState extends State<MyHomePage> {
   double? latitude;
   double? longitude;
   String locationMessage = "";
-  List<double> minMaxLatLong = [];
+  String insideIFCE = "";
+  List<double> minMaxLat = [-3.743229, -3.745868];
+  List<double> minMaxLong = [-38.537143, -38.535511];
+  List<double> ifceCenter = [-3.744402, -38.536037];
+
+  bool _insideIFCE(){
+    if (latitude! < minMaxLat[0] || latitude! > minMaxLat[1] || longitude! < minMaxLong[0] || longitude! > minMaxLong[1]){
+      setState(() {
+        insideIFCE = "Não estás no IFCE!!!";
+      });
+      return false;
+    }
+    setState(() {
+      insideIFCE = "Você está dentro do IFCE!!!!";
+    });
+    return true;
+  }
 
   void _liveLocation(){
   LocationSettings locationSettings = const LocationSettings(
@@ -90,6 +106,10 @@ class _MyHomePageState extends State<MyHomePage> {
     (Position position) {
       latitude = position.latitude;
       longitude = position.longitude;
+      if (!_insideIFCE()){
+        String formated = Geolocator.distanceBetween(latitude!, longitude!, ifceCenter[0], ifceCenter[1]).toStringAsFixed(2);
+        insideIFCE += "Sua distância em relação ao \nIFCE: $formated metros";
+      }
 
       setState(() {
         locationMessage = "Latitude: $latitude Longitude $longitude";
@@ -119,6 +139,7 @@ class _MyHomePageState extends State<MyHomePage> {
         children: <Widget>[
           Text(_currentLocation),
           Text(locationMessage),
+          Text(insideIFCE),
           ElevatedButton(
             onPressed: () {
               _determinePosition().then((value) {
@@ -127,6 +148,10 @@ class _MyHomePageState extends State<MyHomePage> {
                 setState(() {
                   locationMessage = "Latitude: $latitude Longitude $longitude";
                 });
+                if (!_insideIFCE()){
+                  String formated = Geolocator.distanceBetween(latitude!, longitude!, ifceCenter[0], ifceCenter[1]).toStringAsFixed(2);
+                  insideIFCE += "Sua distância em relação ao \nIFCE: $formated metros";
+                }
                 _liveLocation();
               });
             }, 
