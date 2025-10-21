@@ -73,6 +73,10 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   final String _currentLocation = "Localização atual";
+  double? latitude;
+  double? longitude;
+  String locationMessage = "";
+  List<double> minMaxLatLong = [];
 
   @override 
   Widget build(BuildContext context) => Scaffold(
@@ -85,8 +89,17 @@ class _MyHomePageState extends State<MyHomePage> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           Text(_currentLocation),
+          Text(locationMessage),
           ElevatedButton(
-            onPressed: _determinePosition, 
+            onPressed: () {
+              _determinePosition().then((value) {
+                latitude = value.latitude;
+                longitude = value.longitude;
+                setState(() {
+                  locationMessage = "Latitude: $latitude Longitude $longitude";
+                });
+              });
+            }, 
             child: Text("Pegue a sua localização atual"),
             )
         ],
