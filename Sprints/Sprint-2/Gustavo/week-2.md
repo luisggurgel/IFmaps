@@ -3,10 +3,10 @@
 <h2>O que foi feito</h2>
 <ul>
   
-  <li>Estudar sobre Widgets do Flutter</li>
-  <li>Mapear APs da BC (1°, 2° e 3° Andar)</li>
-  <li>Estudei Banco de Dados</li>
-  <li>Spreadsheet com todos os APs foi organizada</li>
+  <li>Estudar sobre Widgets do Flutter (4h) </li>
+  <li>Mapear APs da BC [1°, 2° e 3° Andar] (2h)</li>
+  <li>Estudei Banco de Dados (2h) </li>
+  <li>Spreadsheet com todos os APs foi organizada (2h)</li>
 </ul>
 
 <h2>O que falta fazer</h2>
