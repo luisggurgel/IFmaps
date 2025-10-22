@@ -2,9 +2,9 @@
 
 <h2>O que foi feito</h2>
 <ul>
-  <li>Estudei um pouco sobre Pipeline e como implementar em um projeto</li>
-   <li>Fiz um mapa interno minimalista bem minimalista mesmo da BDI</li>
-   <li>Avancei no mapeamento dos blocos escolhidos</li>
+  <li>Estudei um pouco sobre Pipeline e como implementar em um projeto (1h 30mins)</li>
+   <li>Fiz um mapa interno minimalista bem minimalista mesmo da BDI (1h30mins)</li>
+   <li>Avancei no mapeamento dos blocos escolhidos (1h)</li>
 </ul>
 
 <h2>O que falta fazer</h2>
