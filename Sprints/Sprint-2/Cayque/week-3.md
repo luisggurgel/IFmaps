@@ -3,7 +3,9 @@
 <h2>O que vou fazer:</h2>
 
 <ul>
-
+  <li>Estudar docker</li>
+  <li>Estudar mongoDB</li>
+  <li>Criar as classes em dart</li>
 </ul>
 
 <h2>O que eu fiz:</h2>
