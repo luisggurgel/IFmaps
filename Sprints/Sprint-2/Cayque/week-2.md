@@ -16,7 +16,7 @@
     <li>Finalização do diagrama de classe. 2h - 16/10/2025</li>
     <li>Estudo do git: git checkout, git reverse, git reset, branchs, merge, conflitos. 2h30m - 17/10/25 </li>
     <li>Estudo do mongoDB: Conexão ao banco de dados, listagem de documentos, prática de funções. 2h30m - 18/10/25</li>
-    <li>Testes no ambiente de desenvolvimento: Detecando se o dispositivo está ou não no if e mostrando a localização no google maps. 4h - 23/10/2025</li>
+    <li>Testes no ambiente de desenvolvimento: Detecando se o dispositivo está ou não no if e mostrando a localização no google maps. 4h - 21/10/2025</li>
 </ul>
 
 <h2>Dificuldades</h2>
